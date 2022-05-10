@@ -258,7 +258,9 @@ app.post('/profile/update/bankslips', isLoggedIn,  upload.array('image'), catchA
     res.redirect('/profile');
 }))
 
-
+app.get('/', (req, res) => {
+    res.redirect('/auth/login');
+})
 app.use('/loan', require('./routes/loan'));
 app.use('/auth', require('./routes/auth'));
 

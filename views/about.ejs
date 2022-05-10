@@ -20,7 +20,7 @@
 
         .title,
         .footer {
-            background-image: linear-gradient(to right,#EE6D98,#8A5EBF);
+            background-image: linear-gradient(to right, #EE6D98, #8A5EBF);
         }
 
         h1 {
@@ -57,11 +57,12 @@
         .buttons {
             margin: 10px;
         }
-        .footer{
-            background-image: linear-gradient(to right,#EE6D98,#8A5EBF);
+
+        .footer {
+            background-image: linear-gradient(to right, #EE6D98, #8A5EBF);
             position: relative;
             top: 20vh;
-            
+
         }
 
         p {
@@ -92,7 +93,7 @@
         }
 
         .contact {
-            background-image: linear-gradient(to right,#EE6D98,#8A5EBF);
+            background-image: linear-gradient(to right, #EE6D98, #8A5EBF);
             border-radius: 10px;
         }
 
@@ -123,7 +124,7 @@
         }
 
         @media only screen and (max-width: 991px) {
-            img {
+            .imga{
                 width: 90%;
                 margin-left: 5%;
                 margin-right: 5%;
@@ -132,7 +133,7 @@
 
 
         @media screen and (min-width:992px) and (max-width: 1232px) {
-            img {
+            .imga{
                 width: 163%;
             }
 
@@ -148,14 +149,16 @@
         .form {
             padding-top: 10%;
         }
+ 
     </style>
 </head>
 
 <body>
     <div class="title">
-       
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-image: linear-gradient(to right,#EE6D98,#8A5EBF);">
-            <a class="navbar-brand" href="/showAll"
+
+        <nav class="navbar navbar-expand-lg navbar-light"
+            style="background-image: linear-gradient(to right,#EE6D98,#8A5EBF);">
+            <a class="navbar-brand" href="/home"
                 style="font-size:1.75rem; font-family: 'Comic Sans MS', 'Comic Sans', cursive;color: white;">EasyLoans</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
@@ -164,10 +167,12 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <% if(currentUser !== undefined ){ %>
-                    <ul class="navbar-nav me-auto" style="position: relative; top: 9px;font-weight: 500;font-size: large;">
+                <% if(currentUser !==undefined ){ %>
+                    <ul class="navbar-nav me-auto"
+                        style="position: relative; top: 9px;font-weight: 500;font-size: large;">
                         <li class="nav-item">
-                            <a class="nav-link" href="/home" style="color: white;font-weight: 500;font-size: large;">Home</a>
+                            <a class="nav-link" href="/home"
+                                style="color: white;font-weight: 500;font-size: large;">Home</a>
                         </li>
                         <% if(currentUser !=='undefined' ){ %>
                             <li class="nav-item">
@@ -180,59 +185,64 @@
                             </li>
                             <% } %>
                     </ul>
-                    <% } %> 
-                    <ul class="navbar-nav ms-auto pb-2" style="position: relative; top: 7px;">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/about"
-                                style="color: white;font-weight: 500;font-size: large;position: relative; top: 9px;">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <%= currentUser === 'undefined' ? 'disabled' : '' %>" href="/loan/apply"
-                                style="color: white;font-weight: 500;font-size: large;position: relative; top: 9px;">Apply</a>
-                        </li>
-                        <% if(currentUser !== undefined ){ %>
-            
+                    <% } %>
+                        <ul class="navbar-nav ms-auto pb-2" style="position: relative; top: 7px;">
                             <li class="nav-item">
-                                <a class="nav-link"
-                                    style="color: white;font-weight: 500;font-size: large;position: relative; top: 9px;"
-                                    href="/auth/logout"><i class="fa-solid fa-right-from-bracket fa-xl"
-                                        style="font-size: 30px;"></i></a>
+                                <a class="nav-link" href="/about"
+                                    style="color: white;font-weight: 500;font-size: large;position: relative; top: 9px;">About</a>
                             </li>
-            
                             <li class="nav-item">
-                                <a class="nav-link mx-1" style="color: white;font-weight: 500;font-size: large;" href="/profile">
-                                    <img src="<%= currentUser.profilePicUrl %>" alt="ProfilePic" style="border-radius: 50%;"
-                                        width="40px">
-                                </a>
-            
+                                <a class="nav-link <%= currentUser === 'undefined' ? 'disabled' : '' %>"
+                                    href="/loan/apply"
+                                    style="color: white;font-weight: 500;font-size: large;position: relative; top: 9px;">Apply</a>
                             </li>
-                            <% }else{ %>
+                            <% if(currentUser !==undefined ){ %>
+
                                 <li class="nav-item">
                                     <a class="nav-link"
                                         style="color: white;font-weight: 500;font-size: large;position: relative; top: 9px;"
-                                        href="/auth/login">LogIn</a>
+                                        href="/auth/logout"><i class="fa-solid fa-right-from-bracket fa-xl"
+                                            style="font-size: 30px;"></i></a>
                                 </li>
-                                <% } %>
-                    </ul>
+
+                                <li class="nav-item">
+                                    <a class="nav-link mx-1" style="color: white;font-weight: 500;font-size: large;"
+                                        href="/profile">
+                                        <img  src="<%= currentUser.profilePicUrl %>" alt="ProfilePic"
+                                            style="border-radius: 50%;" width="40px">
+                                    </a>
+
+                                </li>
+                                <% }else{ %>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                            style="color: white;font-weight: 500;font-size: large;position: relative; top: 9px;"
+                                            href="/auth/login">LogIn</a>
+                                    </li>
+                                    <% } %>
+                        </ul>
             </div>
         </nav>
-       
-       
+
+
         <div class="container">
             <div class="heading">
                 <h1 style="color: white">About Us</h1>
             </div>
             <div class="row">
-                <div class="col-lg-5">
-                    <div class="para" style="text-align: center;">
-                        <p style="color: white;">We are a group of folks who wishes for the joy of disabled people. So we created a portal for them to identify
-                            accessible establishments like restaurants, parks, theatres near them. Then they can use them and enjoy it as we do when we use Swiggy to
-                            find restaurants, Google for parks, theatres, and so on.
+                <div class="col-lg-6">
+                    <div class="para" style="text-align: left;">
+                        <p style="color: white;">A customer-to-customer platform for providing personal loans to
+                            customers. A web application that allows users to grant or refuse other web application
+                            users requests. A user can give or apply for a loan without the bank's involvement. They can
+                            also seek changes to the loan term, interest rate, and amount. This website has a
+                            user-friendly interface, and users can lend or take loans without any assets, at a
+                            reasonable interest rate, and at their convenience
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-4 ">
-                    <img src="/stylesheets/main.png">
+                <div class="col-lg-4">
+                    <img src="/stylesheets/abt.png" class="imga">
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
                     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -249,15 +259,16 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <img src="/stylesheets/feature-removebg-preview.png">
+                    <img src="/stylesheets/features.png" class="class="imga"">
                 </div>
                 <div class="col-lg-6 features ">
-                    <p class="ftr">-> Google Authentication for Users and Management </p>
-                    <p class="ftr">-> View a map of the Users' immediate surroundings </p>
-                    <p class="ftr">-> A page dedicated to a location's details.</p>
-                    <p class="ftr">-> Users can review and comment on the location </p>
-                    <p class="ftr">-> Management might provide a description and photographs of their location </p>
-                    <p class="ftr">-> Home, About, and UI-friendly pages </p>
+                    <p class="ftr">-> Flexible repayments </p>
+                    <p class="ftr">-> Fair interest rates </p>
+                    <p class="ftr">-> No collateral required</p>
+                    <p class="ftr">-> User-friendly Interface</p>
+                    <p class="ftr">-> Customer-to-customer platform </p>
+                    <p class="ftr">-> Loan without the bank's involvement </p>
+                    <p class="ftr">-> Save time standing in queues at bank </p>
                 </div>
             </div>
         </div>
@@ -285,14 +296,15 @@
                                     placeholder="Write to Us"></textarea>
                                 <br>
                                 <div class="btns">
-                                    <button type="button" id="btn" class="btn " style="background-color:rgb(107, 14, 194); color: white;">Send Message</button>
+                                    <button type="button" id="btn" class="btn "
+                                        style="background-color:rgb(107, 14, 194); color: white;">Send Message</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <img src="/stylesheets/contact-removebg-preview.png">
+                    <img src="/stylesheets/contactus.png" class="imga">
                 </div>
             </div>
         </div>
@@ -301,11 +313,12 @@
 
     <footer class="footer pb-3 w-100">
         <div class="container text-center">
-            <span class=" footer_span" style="color: white;"> &copy; VISHWAS</span>
+            <span class=" footer_span" style="color: white;"> &copy; EasyLoans</span>
+
         </div>
         <div class="container text-center">
             <span class=" footer_span" style="color: white;">
-                    Made with &#10084; by CodersSquad
+                Made with &#10084; by CodersSquad
             </span>
         </div>
     </footer>
