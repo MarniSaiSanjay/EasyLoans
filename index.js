@@ -134,7 +134,8 @@ app.get('/home', isLoggedIn, catchAsyncError(async (req, res) => {
     }
     else {
         const x = await Loan.find().populate('owner');
-        const allLoans = x.filter((x) => { return (x.isPending === true  && x.amount <= req.user.max_amount)});
+        // console.log(x);
+        const allLoans = x.filter((x) => { return (x.isPending === true  && x.amount <= req.user.max_amount && x.owner.id !== req.user.id)});
         res.render('home', { allLoans, isPend: 0 });
     }
 
