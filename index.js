@@ -32,7 +32,7 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-const dburl =  'mongodb://localhost:27017/loan';
+const dburl =  process.env.DB_URL ||  'mongodb://localhost:27017/loan';
 
 // Connect MongoDB at default port 27017.
 mongoose.connect(dburl, {
