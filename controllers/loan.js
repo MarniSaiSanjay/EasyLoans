@@ -159,8 +159,8 @@ module.exports.acceptCounter = async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'marnisaisanjay@gmail.com', // generated ethereal user
-            pass: '$@nj@y1109' // generated ethereal password
+            user: process.env.EMAIL, // generated ethereal user
+            pass: process.env.EMAILPASSWORD // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -234,8 +234,8 @@ module.exports.rejectCounter = async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'marnisaisanjay@gmail.com', // generated ethereal user
-            pass: '$@nj@y1109' // generated ethereal password
+            user: process.env.EMAIL, // generated ethereal user
+            pass: process.env.EMAILPASSWORD // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -324,8 +324,8 @@ module.exports.acceptDirectly = async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'marnisaisanjay@gmail.com', // generated ethereal user
-            pass: '$@nj@y1109' // generated ethereal password
+            user: process.env.EMAIL, // generated ethereal user
+            pass: process.env.EMAILPASSWORD // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
