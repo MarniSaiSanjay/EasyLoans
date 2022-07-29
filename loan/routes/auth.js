@@ -14,7 +14,13 @@ router.get('/google', passport.authenticate('google', {
 
 // REDIRECT URL:
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    req.flash('primary', `Welcome ${req.user.name}`)
+    const  user = req.user;
+    if(user.aadharNumber=='' || user.panNumber=='' || user.aadharPic.length==0 || user.panPic.length==0 || 
+    user.userPic.length==0 || user.salarySlips.length==0 || user.ifscCode=='' || user.accountNumber==''){
+        req.flash('primary', `Welcome ${req.user.name}, To utilise EasyLoans, please finish creating your profile.`);
+        res.redirect('/profile/update');
+    }
+    req.flash('primary', `Welcome ${req.user.name}`);
     res.redirect('/home');
 });
 
