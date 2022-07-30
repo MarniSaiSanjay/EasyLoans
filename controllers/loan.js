@@ -25,6 +25,10 @@ module.exports.LoanDB = async (req, res) => {
 module.exports.editLoan = async (req, res) => {
     const { id } = req.params;
     const loan = await Loan.findById(id);
+    if(loan.isPending==false){
+        req.flash('error', 'Deal is already made');
+        return res.redirect('/home');
+    }
     if(loan !== null){
         res.render('loan/edit', { loan });
     }
@@ -38,12 +42,24 @@ module.exports.editLoan = async (req, res) => {
 module.exports.updateLoan = async (req, res) => {
     const { id } = req.params;
     const { amount, interest, category, timePeriod } = req.body;
+    const loan = await Loan.findById(id);
+    if(loan.isPending==false){
+        req.flash('error', 'Deal is already made');
+        return res.redirect('/home');
+    }
     await Loan.findByIdAndUpdate(id, { amount, interest, category, timePeriod });
     res.redirect('/home');
 }
 
 module.exports.deleteLoan = async (req, res) => {
     const { id } = req.params;
+   
+    const loan = await Loan.findById(id);
+    if(loan.isPending==false){
+        req.flash('error', 'Deal is already made');
+        return res.redirect('/home');
+    }
+   
     await Loan.findByIdAndDelete(id);
     await GoogleUser.findByIdAndUpdate(req.user.id, { $pull: { loans: id } });
     res.redirect('/home');
